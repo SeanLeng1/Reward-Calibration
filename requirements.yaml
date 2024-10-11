@@ -1,0 +1,13 @@
+netcal
+deepspeed==0.14.4
+accelerate
+transformers==4.43.2 
+datasets
+evaluate
+sentencepiece
+seaborn
+scikit-learn
+ipykernel
+matplotlib==3.7.5
+openai
+litellm==1.43.5

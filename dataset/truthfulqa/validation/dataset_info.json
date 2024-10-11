@@ -1,0 +1,69 @@
+{
+  "builder_name": "truthful_qa",
+  "citation": "@misc{lin2021truthfulqa,\n    title={TruthfulQA: Measuring How Models Mimic Human Falsehoods},\n    author={Stephanie Lin and Jacob Hilton and Owain Evans},\n    year={2021},\n    eprint={2109.07958},\n    archivePrefix={arXiv},\n    primaryClass={cs.CL}\n}\n",
+  "config_name": "multiple_choice",
+  "dataset_size": 609082,
+  "description": "TruthfulQA is a benchmark to measure whether a language model is truthful in\ngenerating answers to questions. The benchmark comprises 817 questions that\nspan 38 categories, including health, law, finance and politics. Questions are\ncrafted so that some humans would answer falsely due to a false belief or\nmisconception. To perform well, models must avoid generating false answers\nlearned from imitating human texts.\n",
+  "download_checksums": {
+    "https://raw.githubusercontent.com/sylinrl/TruthfulQA/013686a06be7a7bde5bf8223943e106c7250123c/data/mc_task.json": {
+      "num_bytes": 710607,
+      "checksum": null
+    }
+  },
+  "download_size": 710607,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "mc1_targets": {
+      "choices": {
+        "feature": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "_type": "Sequence"
+      },
+      "labels": {
+        "feature": {
+          "dtype": "int32",
+          "_type": "Value"
+        },
+        "_type": "Sequence"
+      }
+    },
+    "mc2_targets": {
+      "choices": {
+        "feature": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "_type": "Sequence"
+      },
+      "labels": {
+        "feature": {
+          "dtype": "int32",
+          "_type": "Value"
+        },
+        "_type": "Sequence"
+      }
+    }
+  },
+  "homepage": "https://github.com/sylinrl/TruthfulQA",
+  "license": "Apache License 2.0",
+  "size_in_bytes": 1319689,
+  "splits": {
+    "validation": {
+      "name": "validation",
+      "num_bytes": 609082,
+      "num_examples": 817,
+      "dataset_name": "truthful_qa"
+    }
+  },
+  "version": {
+    "version_str": "1.1.0",
+    "major": 1,
+    "minor": 1,
+    "patch": 0
+  }
+}
