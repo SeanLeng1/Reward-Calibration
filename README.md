@@ -148,29 +148,30 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 ## Trained Checkpoints
 | PPO checkpoints                  | Method |
 |------------------------|------|
-| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                  | PPO†  |
-| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                | PPO   |
-| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                | PPO-M |
-| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                | PPO-C |
-| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)               | PPO†  |
-| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                | PPO   |
-| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                   | PPO-M |
-| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                   | PPO-C |
+| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                      | PPO†   |
+| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                  | PPO    |
+| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                  | PPO-M  |
+| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                  | PPO-C  |
+| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)                | PPO†   |
+| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                  | PPO    |
+| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                        | PPO-M  |
+| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  |
+| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  |
 
 
 | RM checkpoints                  | Method |
 |------------------------|------|
-| [llama3-8b-crm-final-v0.1](https://huggingface.co/HINT-lab/llama3-8b-crm-final-v0.1)                | Llama3 Calibrated Reward Model |
-| [mistral-7b-hermes-rm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-rm-skywork)        | Mistral Reward Model |
-| [mistral-7b-hermes-crm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-crm-skywork)      | Mistral Calibrated Reward Model |
+| [llama3-8b-crm-final-v0.1](https://huggingface.co/HINT-lab/llama3-8b-crm-final-v0.1)                      | CRM   |
+| [mistral-7b-hermes-rm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-rm-skywork)              | RM    |
+| [mistral-7b-hermes-crm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-crm-skywork)            | RM    |
 
 
 | DPO checkpoints                  | Method |
 |------------------------|------|
-| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                 | DPO   |
+| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                  | DPO   |
 | [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO  |
-| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2)                         | DPO   |
-| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2)                        | CDPO  |
+| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2])                                 | DPO   |
+| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2])                               | CDPO  |
 
 
 ## Dataset
