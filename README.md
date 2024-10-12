@@ -28,7 +28,7 @@ pip install -e reward-bench     # for reward-bench evaluation
 
 This section is for demonstration purposes only. Please modify the bash scripts according to your directory structure. Additional models can be included by following the provided scripts:
 ```
-cd Model_Calibration
+cd Reward-Calibration
 bash scripts/general_scripts/rum_rm.sh          # reward model
 bash scripts/general_scripts/rum_dpo.sh         # dpo model
 ```
@@ -48,7 +48,7 @@ conda activate OpenRLHF
 Then install required packages
 ```
 pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121    # we use 2.3.1 with cu121
-pip install -r requirements.txt
+pip install -r requirements.yaml
 pip install -e OpenRLHF
 ```
 
@@ -60,7 +60,7 @@ pip uninstall deepspeed
 pip cache remove deepspeed
 DS_BUILD_FUSED_ADAM=1 DS_BUILD_CPU_ADAM=1 pip install deepspeed==0.14.4     # for offload and fused adam
 ```
-Upon successful installation of Deepspeed, it is recommended to uninstall the GCC package to prevent potential conflicts with other installed packages."
+Upon successful installation of Deepspeed, it is recommended to uninstall the GCC package to prevent potential conflicts with other installed packages.
 
 > [!NOTE]
 > Ray is not supported and Packing Samples is not supported in current version (You might want to check [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF/tree/main) for lastest update)
@@ -68,13 +68,13 @@ Upon successful installation of Deepspeed, it is recommended to uninstall the GC
 
 **Calibrate Reward Model**
 ```
-cd Model_Calibration
+cd Reward-Calibration
 bash scripts/general_scripts/train_crm.sh
 ```
 
 **PPO and PPO-M**
 ```
-cd Model_Calibration
+cd Reward-Calibration
 bash scripts/general_scripts/train-ppo-llama.sh 
 bash scripts/general_scripts/train-ppo-mistral.sh
 ```
@@ -82,7 +82,7 @@ To train with PPO-M, replace the ```reward_pretrain``` with the calibrated rewar
 
 **PPO-C**
 ```
-cd Model_Calibration
+cd Reward-Calibration
 bash scripts/general_scripts/train-ppo-c-llama.sh
 bash scripts/general_scripts/train-ppo-c-mistral.sh
 ```
@@ -90,7 +90,7 @@ Ensure to use the regular reward model (pre-calibrated one) here.
 
 **CDPO**
 ```
-cd Model_Calibration
+cd Reward-Calibration
 bash scripts/general_scripts/train-cdpo-llama.sh 
 bash scripts/general_scripts/train-cdpo-mistral.sh 
 ```
@@ -100,7 +100,7 @@ A smaller beta typically yields better results (e.g., 0.01).
 ### Evaluation
 **Configure the Environment: Create an ```api_key.yaml``` inside the scripts folder (not general_scripts), and set your ```OPENAI_API_KEY: [api_key]```. Then navigate to yhe main directory:**
 ```
-cd Model_Calibration
+cd Reward-Calibration
 ```
 
 **To Evaluate the Model**
