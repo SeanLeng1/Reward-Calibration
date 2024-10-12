@@ -29,8 +29,8 @@ pip install -e reward-bench     # for reward-bench evaluation
 This section is for demonstration purposes only. Please modify the bash scripts according to your directory structure. Additional models can be included by following the provided scripts:
 ```
 cd Reward-Calibration
-bash scripts/general_scripts/rum_rm.sh          # reward model
-bash scripts/general_scripts/rum_dpo.sh         # dpo model
+bash scripts/general_scripts/run_rm.sh          # reward model
+bash scripts/general_scripts/run_dpo.sh         # dpo model
 ```
 
 **To plot the results**
@@ -62,7 +62,7 @@ DS_BUILD_FUSED_ADAM=1 DS_BUILD_CPU_ADAM=1 pip install deepspeed==0.14.4     # fo
 Upon successful installation of Deepspeed, it is recommended to uninstall the GCC package to prevent potential conflicts with other installed packages.
 
 > [!NOTE]
-> Ray is not supported and Packing Samples is not supported in current version (You might want to check [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF/tree/main) for lastest update)
+> Ray is not supported and Packing Samples is not supported in current version (You might want to check [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF/tree/main) for latest update)
 
 
 **Calibrate Reward Model**
@@ -97,7 +97,7 @@ A smaller beta typically yields better results (e.g., 0.01).
 
 
 ### Evaluation
-**Configure the Environment: Create an ```api_key.yaml``` inside the scripts folder (not general_scripts), and set your ```OPENAI_API_KEY: [api_key]```. Then navigate to yhe main directory:**
+**Configure the Environment: Create an ```api_key.yaml``` inside the scripts folder (not general_scripts), and set your ```OPENAI_API_KEY: [api_key]```. Then navigate to the main directory:**
 ```
 cd Reward-Calibration
 ```
