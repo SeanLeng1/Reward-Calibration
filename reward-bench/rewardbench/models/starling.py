@@ -29,12 +29,12 @@ from transformers import (
 )
 
 SUPPORTED_STARLING_MODELS = ["berkeley-nest/Starling-RM-7B-alpha", "Nexusflow/Starling-RM-34B"]
-
+CACHE_DIR = os.getenv('TRANSFORMERS_CACHE', None)
 
 def build_starling_rm(model_name, **kwargs):
     if model_name == "berkeley-nest/Starling-RM-7B-alpha":
         reward_model = GPTRewardModel("meta-llama/Llama-2-7b-chat-hf", **kwargs)
-        directory = snapshot_download(model_name, cache_dir='/storage1/jiaxinh/Active/models_cache')
+        directory = snapshot_download(model_name, cache_dir=CACHE_DIR)
         for fpath in os.listdir(directory):
             if fpath.endswith(".pt") or fpath.endswith("model.bin"):
                 checkpoint = os.path.join(directory, fpath)

@@ -21,6 +21,14 @@
 <img src="assets/method-framework.png"  width="90%">
 </div>
 
+## Contents
+- [Installation](#installation)
+- [Evaluation](#evaluation)
+- [Trained Checkpoints](#trained-checkpoints)
+- [Dataset](#dataset)
+- [Reference](#references-and-acknowledgements)
+
+
 ## Getting Started
 ### Installation
 **Prepare the environment (recommend to follow the instructions and use separate (fresh) environments for each step)**
@@ -33,7 +41,7 @@ pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https
 pip install -r requirements.yaml
 pip install -e reward-bench     # for reward-bench evaluation
 ```
-### Reproduce the Reward Model Experiment
+## Reproduce the Reward Model Experiment
 
 This section is for demonstration purposes only. Please modify the bash scripts according to your directory structure. Additional models can be included by following the provided scripts:
 ```
@@ -47,7 +55,7 @@ bash scripts/general_scripts/run_dpo.sh         # dpo model
 python plot_reward_win_rate.py --loc reward_results/prompt --loc2 reward_results/no_prompt      # path to no prompt results is required for mode one: Answer_Only
 ```
 
-### Run Reward Model/PPO/DPO Training
+## Run Reward Model/PPO/DPO Training
 
 To conduct training, adhere to the package requirements specified by OpenRLHF. It is advisable to use a separate Conda environment for this purpose
 ```
@@ -105,7 +113,7 @@ bash scripts/general_scripts/train-cdpo-mistral.sh
 A smaller beta typically yields better results (e.g., 0.01).
 
 
-### Evaluation
+## Evaluation
 **Configure the Environment: Create an ```api_key.yaml``` inside the scripts folder (not general_scripts), and set your ```OPENAI_API_KEY: [api_key]```. Then navigate to the main directory:**
 ```
 cd Reward-Calibration
@@ -143,20 +151,19 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 ```
 
 > [!NOTE]
-> Use a separate environment for Arena-Hard-Auto due to vllm specific requirements, such as particular Torch versions. Modify the ```gen_model_answer.py``` file to utilize a tokenizer chat template instead of the FastChat conversation template. Consider the model's data type (bf16). Our modified files, which accommodate the latest OpenAI API scheme and manage the presence of 'bos' tokens in chat templates, can be found in ```utils/fastchat_replacement``` and ```utils/arena-hard-auto-replacement```. Be aware that manual adjustments may be needed for templates intentionally lacking a 'bos' token.
+> Use a separate environment for Arena-Hard-Auto due to vllm specific requirements, such as particular Torch versions. Modify the ```gen_model_answer.py``` file to utilize a tokenizer chat template instead of the FastChat conversation template. Consider the model's data type (bf16). Our modified files, which accommodate the latest OpenAI API scheme and manage the presence of 'bos' tokens in chat templates, can be found in ```utils/fastchat_replacement``` and ```utils/arena-hard-auto-replacement```. Be aware that manual adjustments may be needed for templates intentionally lacking a 'bos' token. You should also modify the path to your API key in with ```open('your_path/api_key.yaml', 'r') as f```.
 
 ## Trained Checkpoints
-| PPO checkpoints                  | Method |
-|------------------------|------|
-| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                      | PPO†   |
-| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                  | PPO    |
-| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                  | PPO-M  |
-| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                  | PPO-C  |
-| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)                | PPO†   |
-| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                  | PPO    |
-| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                        | PPO-M  |
-| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  |
-| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  |
+| PPO checkpoints                  | Method | ECE on GSM8K | Arena-Hard |
+|------------------------|------|------|------|
+| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                      | PPO†   | 0.2553 | 13.4 |
+| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                  | PPO    | 0.2566 | 14.6 |
+| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                  | PPO-M  | 0.1909 | 14.1 |
+| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                  | PPO-C  | 0.2252 | 14.1 |
+| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                  | PPO†   | 0.3932 | 11.7 |
+| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)                | PPO    | 0.4146 | 10.5 |
+| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                        | PPO-M  | 0.3379 | 9.9  |
+| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  | 0.3653 | 11.8 | 
 
 
 | RM checkpoints                  | Method |
@@ -166,12 +173,12 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 | [mistral-7b-hermes-crm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-crm-skywork)            | RM    |
 
 
-| DPO checkpoints                  | Method |
-|------------------------|------|
-| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                  | DPO   |
-| [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO  |
-| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2])                                 | DPO   |
-| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2])                               | CDPO  |
+| DPO checkpoints                  | Method | ECE on GSM8K | Arena-Hard |
+|------------------------|------|------|------|
+| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                  | DPO†   | 0.3456 | 14.3  |    
+| [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO   | 0.1189 | 15.9  |    
+| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2])                                 | DPO†   | 0.452  | 15.2  |  
+| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2])                               | CDPO   | 0.3313 | 14.7  |
 
 
 ## Dataset
@@ -188,7 +195,7 @@ Please refer to the following links to access the original sources and adhere to
 - [MMLU](https://github.com/hendrycks/test?tab=readme-ov-file)
 
 
-## References & Acknowledgements
+## References and Acknowledgements
 
 Our codebase is built upon RewardBench for reward model testing, and we utilize OpenRLHF for reward model and RLHF training.
 We express our sincere gratitude to these projects and their contributors. 

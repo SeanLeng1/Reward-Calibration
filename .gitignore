@@ -184,3 +184,4 @@ reward_results/*
 ablations/*
 combined_plots/*
 ablations/*
+query/experiment.py

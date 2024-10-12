@@ -26,7 +26,7 @@ from fastchat.llm_judge.common import (
 import yaml
 import os 
 
-with open('/storage1/jiaxinh/Active/jixuan/Model_Calibration/scripts/api_key.yaml', 'r') as f:
+with open('Reward-Calibration/scripts/api_key.yaml', 'r') as f:
     config = yaml.safe_load(f)
 os.environ["OPENAI_API_KEY"] = config['OPENAI_API_KEY']
 
