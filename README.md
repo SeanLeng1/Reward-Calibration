@@ -1,8 +1,17 @@
 # Taming Overconfidence in LLMs: Reward Calibration in RLHF
-<div align="center">
-    <a href="https://huggingface.co/HINT-lab"><img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm-dark.svg"></a>
-    <a href=""><img src="assets/Paper-Arxiv-orange.svg" ></a>
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+    <a href="https://huggingface.co/HINT-lab" style="margin-right: 10px;">
+        <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm-dark.svg" style="height: 25px;">
+    </a>
+    <a href="https://huggingface.co/HINT-lab" style="margin-right: 10px;">
+        <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/model-on-hf-sm-dark.svg" style="height: 25px;">
+    </a>
+    <a href="#">
+        <img src="assets/Paper-Arxiv-orange.svg" style="height: 25px;">
+    </a>
 </div>
+
+
 
 <div align="center">
 <img src="assets/calibration-framework.png"  width="90%">
@@ -135,6 +144,33 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 
 > [!NOTE]
 > Use a separate environment for Arena-Hard-Auto due to vllm specific requirements, such as particular Torch versions. Modify the ```gen_model_answer.py``` file to utilize a tokenizer chat template instead of the FastChat conversation template. Consider the model's data type (bf16). Our modified files, which accommodate the latest OpenAI API scheme and manage the presence of 'bos' tokens in chat templates, can be found in ```utils/fastchat_replacement``` and ```utils/arena-hard-auto-replacement```. Be aware that manual adjustments may be needed for templates intentionally lacking a 'bos' token.
+
+## Trained Checkpoints
+| PPO checkpoints                  | Method |
+|------------------------|------|
+| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                  | PPO†  |
+| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                | PPO   |
+| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                | PPO-M |
+| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                | PPO-C |
+| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)               | PPO†  |
+| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                | PPO   |
+| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                   | PPO-M |
+| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                   | PPO-C |
+
+
+| RM checkpoints                  | Method |
+|------------------------|------|
+| [llama3-8b-crm-final-v0.1](https://huggingface.co/HINT-lab/llama3-8b-crm-final-v0.1)                | Llama3 Calibrated Reward Model |
+| [mistral-7b-hermes-rm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-rm-skywork)        | Mistral Reward Model |
+| [mistral-7b-hermes-crm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-crm-skywork)      | Mistral Calibrated Reward Model |
+
+
+| DPO checkpoints                  | Method |
+|------------------------|------|
+| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                 | DPO   |
+| [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO  |
+| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2)                         | DPO   |
+| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2)                        | CDPO  |
 
 
 ## Dataset

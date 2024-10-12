@@ -78,28 +78,28 @@ if __name__ == '__main__':
     transformers.utils.logging.enable_default_handler()
     transformers.utils.logging.enable_explicit_format()
 
-    name = "/storage1/jiaxinh/Active/jixuan/rm_checkpoints_fixed/mistral-7b-hermes-rm-skywork"
-    config = AutoConfig.from_pretrained(name, trust_remote_code = True)
-    base_class = AutoModel._model_mapping[type(config)]
-    base_pretrained_class = base_class.__base__
-    head_prefix = 'value_head'
-    cls_class = _get_reward_model(base_pretrained_class, base_class, head_prefix)
-    # our trained and OpenRLHF model use bf16 by default
-    model = cls_class.from_pretrained(name, config=config, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map = "cpu")
-    tokenizer = AutoTokenizer.from_pretrained(name)
-
-
-    # name = "/storage1/jiaxinh/Active/jixuan/dpo_checkpoints2/mistral-7b-hermes-dpo-v0.2"
-    # model = AutoModelForCausalLM.from_pretrained(
-    #     name,
-    #     trust_remote_code=True,
-    #     attn_implementation='flash_attention_2',
-    #     quantization_config=None,
-    #     torch_dtype=torch.bfloat16,
-    #     device_map=None,
-    # )
+    # name = "/storage1/jiaxinh/Active/jixuan/rm_checkpoints_fixed/llama3-8b-crm-final-v0.1"
+    # config = AutoConfig.from_pretrained(name, trust_remote_code = True)
+    # base_class = AutoModel._model_mapping[type(config)]
+    # base_pretrained_class = base_class.__base__
+    # head_prefix = 'value_head'
+    # cls_class = _get_reward_model(base_pretrained_class, base_class, head_prefix)
+    # # our trained and OpenRLHF model use bf16 by default
+    # model = cls_class.from_pretrained(name, config=config, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map = "cpu")
     # tokenizer = AutoTokenizer.from_pretrained(name)
 
 
-    model.push_to_hub("HINT-lab/mistral-7b-hermes-rm-skywork")
-    tokenizer.push_to_hub("HINT-lab/mistral-7b-hermes-rm-skywork")
+    name = "/storage1/jiaxinh/Active/jixuan/dpo_checkpoints2/llama3-8b-dpo-v0.2"
+    model = AutoModelForCausalLM.from_pretrained(
+        name,
+        trust_remote_code=True,
+        attn_implementation='flash_attention_2',
+        quantization_config=None,
+        torch_dtype=torch.bfloat16,
+        device_map=None,
+    )
+    tokenizer = AutoTokenizer.from_pretrained(name)
+
+
+    model.push_to_hub("HINT-lab/llama3-8b-dpo-v0.2")
+    tokenizer.push_to_hub("HINT-lab/llama3-8b-dpo-v0.2")
