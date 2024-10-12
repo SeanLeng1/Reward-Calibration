@@ -48,7 +48,6 @@ conda activate OpenRLHF
 Then install required packages
 ```
 pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121    # we use 2.3.1 with cu121
-pip install -r requirements.yaml
 pip install -e OpenRLHF
 ```
 
