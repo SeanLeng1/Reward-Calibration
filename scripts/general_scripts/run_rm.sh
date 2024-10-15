@@ -3,16 +3,16 @@ set +e
 
 # reward model list and whether to trust remote code
 declare -A MODELS
-MODELS["openbmb/Eurus-RM-7b"]="true"            
-MODELS["OpenLLMAI/Llama-3-8b-rm-mixture"]="true"
-
-
+# MODELS["openbmb/Eurus-RM-7b"]="true"            
+# MODELS["OpenLLMAI/Llama-3-8b-rm-mixture"]="true"
+MODELS["HINT-lab/llama3-8b-crm-final-v0.1"]="true"
 
 # in case tokenizer does not have a chat template
 # which fastchat conversation template to use
 declare -A CHAT_TEMPLATES
 CHAT_TEMPLATES["openbmb/Eurus-RM-7b"]="mistral"
 CHAT_TEMPLATES["OpenLLMAI/Llama-3-8b-rm-mixture"]="llama-3"
+CHAT_TEMPLATES["HINT-lab/llama3-8b-crm-final-v0.1"]="llama-3"
 
 
 # whether or not loading as OpenRLHF reward models
@@ -20,6 +20,7 @@ CHAT_TEMPLATES["OpenLLMAI/Llama-3-8b-rm-mixture"]="llama-3"
 declare -A LOADINGS
 LOADINGS["openbmb/Eurus-RM-7b"]="false"
 LOADINGS["OpenLLMAI/Llama-3-8b-rm-mixture"]="true"
+LOADINGS["HINT-lab/llama3-8b-crm-final-v0.1"]="true"
 
 
 # try all modes and each with and without confidence score
@@ -83,7 +84,7 @@ do
                         CUSTOMIZE_LOADING="--customize_loading"
                     fi
 
-                    OUTPUT="reward_results/${SAVE_FOLDER}${PROB_SIDE_FLAG}/${CLEAN_MODEL_NAME}/"
+                    OUTPUT="reward_results2/${SAVE_FOLDER}${PROB_SIDE_FLAG}/${CLEAN_MODEL_NAME}/"
                     mkdir -p $OUTPUT
                     SCORE_FILE="${OUTPUT}/scores${SCORE_NAME}_${MODE}.json"
                     # check if jsons exist in the output directory, so we can avoid rerunning

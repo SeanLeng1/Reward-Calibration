@@ -1,4 +1,4 @@
-# Taming Overconfidence in LLMs: Reward Calibration in RLHF
+# [Taming Overconfidence in LLMs: Reward Calibration in RLHF](https://arxiv.org/abs/2410.09724)
 <div align="center" style="display: flex; align-items: center; justify-content: center;">
     <a href="https://huggingface.co/HINT-lab" style="margin-right: 10px;">
         <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm-dark.svg" style="height: 25px;">
@@ -6,7 +6,7 @@
     <a href="https://huggingface.co/HINT-lab" style="margin-right: 10px;">
         <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/model-on-hf-sm-dark.svg" style="height: 25px;">
     </a>
-    <a href="#">
+    <a href="https://arxiv.org/abs/2410.09724">
         <img src="assets/Paper-Arxiv-orange.svg" style="height: 25px;">
     </a>
 </div>
@@ -27,6 +27,7 @@
 - [Trained Checkpoints](#trained-checkpoints)
 - [Dataset](#dataset)
 - [Reference](#references-and-acknowledgements)
+- [Citation](#citation)
 
 
 ## Getting Started
@@ -206,3 +207,17 @@ As OpenRLHF and FastChat are actively updating, for the most recent version, ple
 - [FastChat ↗](https://github.com/lm-sys/FastChat)
 - [LLM-uncertainty ↗](https://github.com/MiaoXiong2320/llm-uncertainty)
 - [Arena-Hard-Auto ↗](https://github.com/lmarena/arena-hard-auto)
+
+
+## Citation
+```
+@misc{leng2024tamingoverconfidencellmsreward,
+      title={Taming Overconfidence in LLMs: Reward Calibration in RLHF}, 
+      author={Jixuan Leng and Chengsong Huang and Banghua Zhu and Jiaxin Huang},
+      year={2024},
+      eprint={2410.09724},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.09724}, 
+}
+```
