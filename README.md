@@ -1,4 +1,7 @@
 # [Taming Overconfidence in LLMs: Reward Calibration in RLHF](https://arxiv.org/abs/2410.09724)
+This repository contains the code and released models of our paper [Taming Overconfidence in LLMs: Reward Calibration in RLHF](https://arxiv.org/abs/2410.09724). We propose two effective algorithms, PPO-M (PPO with Calibrated Reward Modeling) and PPO-C (PPO with Calibrated Reward Calculation), to mitigate verbalized overconfidence in RLHF-trained Large Language Models. Our algorithms consistently outperform vanilla PPO on Expected Calibration Error (ECE), AUC and accuracy across six benchmark datasets, while maintaining model capabilities in open-ended conversations by achieving comparable performance on MT-Bench and Arena-Hard.
+
+
 <div align="center" style="display: flex; align-items: center; justify-content: center;">
     <a href="https://huggingface.co/HINT-lab" style="margin-right: 10px;">
         <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm-dark.svg" style="height: 25px;">
@@ -10,7 +13,6 @@
         <img src="assets/Paper-Arxiv-orange.svg" style="height: 25px;">
     </a>
 </div>
-
 
 
 <div align="center">
@@ -210,14 +212,14 @@ As OpenRLHF and FastChat are actively updating, for the most recent version, ple
 
 
 ## Citation
+Please cite our paper if you find the repo helpful in your work:
 ```
-@misc{leng2024tamingoverconfidencellmsreward,
+@article{Leng2024TamingOI,
       title={Taming Overconfidence in LLMs: Reward Calibration in RLHF}, 
       author={Jixuan Leng and Chengsong Huang and Banghua Zhu and Jiaxin Huang},
       year={2024},
-      eprint={2410.09724},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
+      journal={ArXiv},
+      volume={abs/2410.09724},
       url={https://arxiv.org/abs/2410.09724}, 
 }
 ```
