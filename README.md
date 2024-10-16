@@ -157,16 +157,16 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 > Use a separate environment for Arena-Hard-Auto due to vllm specific requirements, such as particular Torch versions. Modify the ```gen_model_answer.py``` file to utilize a tokenizer chat template instead of the FastChat conversation template. Consider the model's data type (bf16). Our modified files, which accommodate the latest OpenAI API scheme and manage the presence of 'bos' tokens in chat templates, can be found in ```utils/fastchat_replacement``` and ```utils/arena-hard-auto-replacement```. Be aware that manual adjustments may be needed for templates intentionally lacking a 'bos' token. You should also modify the path to your API key in with ```open('your_path/api_key.yaml', 'r') as f```.
 
 ## Trained Checkpoints
-| PPO checkpoints                  | Method | ECE on GSM8K | Arena-Hard |
-|------------------------|------|------|------|
-| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                      | PPO†   | 0.2553 | 13.4 |
-| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                  | PPO    | 0.2566 | 14.6 |
-| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                  | PPO-M  | 0.1909 | 14.1 |
-| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                  | PPO-C  | 0.2252 | 14.1 |
-| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                  | PPO†   | 0.3932 | 11.7 |
-| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)                | PPO    | 0.4146 | 10.5 |
-| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                        | PPO-M  | 0.3379 | 9.9  |
-| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  | 0.3653 | 11.8 | 
+| PPO checkpoints                  | Method | ECE on GSM8K (↓) | MT-Bench (↑) | Arena-Hard (↑) |
+|------------------------|------|:------:|:------:|:------:|
+| [llama3-8b-final-ppo-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-v0.3)                      | PPO†   | 0.2553 | 8.00 | 13.4 |
+| [llama3-8b-final-clean-v0.1](https://huggingface.co/HINT-lab/llama3-8b-final-clean-v0.1)                  | PPO    | 0.2566 | 7.81 | 14.6 |
+| [llama3-8b-final-ppo-m-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-m-v0.3)                  | PPO-M  | 0.1909 | 8.05 | 14.1 |
+| [llama3-8b-final-ppo-c-v0.3](https://huggingface.co/HINT-lab/llama3-8b-final-ppo-c-v0.3)                  | PPO-C  | 0.2252 | 8.05 | 14.1 |
+| [mistral-7b-ppo-hermes-v0.3](https://huggingface.co/HINT-lab/mistral-7b-ppo-hermes-v0.3)                  | PPO†   | 0.3932 | 7.84 | 11.7 |
+| [mistral-7b-ppo-clean-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-clean-hermes)                | PPO    | 0.4146 | 7.83 | 10.5 |
+| [mistral-7b-ppo-m-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-m-hermes)                        | PPO-M  | 0.3379 | 7.95 | 9.9  |
+| [mistral-7b-ppo-c-hermes](https://huggingface.co/HINT-lab/mistral-7b-ppo-c-hermes)                        | PPO-C  | 0.3653 | 7.98 | 11.8 | 
 
 
 | RM checkpoints                  | Method |
@@ -176,12 +176,12 @@ pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthrop
 | [mistral-7b-hermes-crm-skywork](https://huggingface.co/HINT-lab/mistral-7b-hermes-crm-skywork)            | RM    |
 
 
-| DPO checkpoints                  | Method | ECE on GSM8K | Arena-Hard |
-|------------------------|------|------|------|
-| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                  | DPO†   | 0.3456 | 14.3  |    
-| [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO   | 0.1189 | 15.9  |    
-| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2])                                 | DPO†   | 0.452  | 15.2  |  
-| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2])                               | CDPO   | 0.3313 | 14.7  |
+| DPO checkpoints                  | Method | ECE on GSM8K (↓) | MT-Bench (↑) | Arena-Hard (↑) |
+|------------------------|------|:------:|:------:|:------:|
+| [mistral-7b-hermes-dpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-dpo-v0.2)                  | DPO†   | 0.3456 | 7.83 | 14.3  |    
+| [mistral-7b-hermes-cdpo-v0.2](https://huggingface.co/HINT-lab/mistral-7b-hermes-cdpo-v0.2)                | CDPO   | 0.1189 | 7.85 | 15.9  |    
+| [llama3-8b-dpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-dpo-v0.2])                                 | DPO†   | 0.452  | 7.52 | 15.2  |  
+| [llama3-8b-cdpo-v0.2](https://huggingface.co/HINT-lab/llama3-8b-cdpo-v0.2])                               | CDPO   | 0.3313 | 7.68 | 14.7  |
 
 
 ## Dataset
