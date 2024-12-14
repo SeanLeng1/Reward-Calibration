@@ -322,7 +322,6 @@ def query(args):
                 logger.info("No prompts to retry")
                 break
 
-            
         # Final Retry is we still cannot get confidence, we add confidence into the prompts
         # and retry (hopefully it can output some numbers this time)
         # reference: https://github.com/xu1868/SaySelf/blob/main/evaluation/evaluate.py

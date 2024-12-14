@@ -95,7 +95,11 @@ def plot_reference(loc, loc2):
         low_greater_count = sum(1 for d in scores if d['low_confidence_score'] > d['high_confidence_score'])
         all_data['answer\nonly'] = [high_greater_count, low_greater_count]
 
-        title = f'Comparison of Preference Over Responses\nfor {model}'
+        if model == 'llama3-8b-crm-final-v0.1':
+            print('rename')
+            title = f'Comparison of Preference Over Responses\nfor Llama3-8b-crm'
+        else:
+            title = f'Comparison of Preference Over Responses\nfor {model}'
         categories = ['Prefer Rejected Or High Confidence Responses', 'Prefer Chosen Or Low Confidence Responses']
       
         

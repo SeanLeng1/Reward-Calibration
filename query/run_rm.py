@@ -277,7 +277,7 @@ def get_args():
     )
 
     parser.add_argument("--seed", type=int, default=42, help="random seed for reproducibility")
-    parser.add_argument('--mode', type=str, default='chosen', choices=['chosen', 'rejected', 'normal', 'both_high', 'both_low'])
+    parser.add_argument('--mode', type=str, default='chosen', choices=['chosen', 'rejected', 'normal', 'both_high', 'both_low', 'random'])
     parser.add_argument('--format_prompt', action='store_true', help='Format user prompt for the model')
     parser.add_argument('--add_probabilities', action='store_true', help='add confidence probabilities to the text')
     parser.add_argument('--customize_loading', action='store_true', help='OpenLLMAI models require customize loading')

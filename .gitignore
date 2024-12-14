@@ -180,8 +180,11 @@ test.ipynb
 temp.py
 data_analysis.ipynb
 verbalized_output/*
+verbalized_output-2/*
 reward_results/*
 ablations/*
 combined_plots/*
+combined_plots-2/*
 ablations/*
 query/experiment.py
+*.png

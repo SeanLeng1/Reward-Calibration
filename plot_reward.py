@@ -36,7 +36,7 @@ def plot_preference(loc):
             shutil.rmtree(save_dir)
         os.makedirs(save_dir, exist_ok=True)
 
-        modes = ['normal', 'rejected', 'chosen', 'both_high', 'both_low']
+        modes = ['normal', 'rejected', 'chosen', 'both_high', 'both_low', 'random']
         probability_settings = ['', '_with_probability']
 
         for mode in modes:

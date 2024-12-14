@@ -54,6 +54,8 @@ class CalibratedRewardModelTrainer(ABC):
         self.args = strategy.args
 
         self.kwise_loss = False
+        self.combined_loss = False
+        self.variant_loss = False
         if loss == "sigmoid":
             self.loss_fn = PairWiseLoss()
             self.strategy.print("LogSigmoid Loss for training")
@@ -61,6 +63,14 @@ class CalibratedRewardModelTrainer(ABC):
             self.loss_fn = KWiseMLELoss()
             self.strategy.print("KWise MLE Loss for training")
             self.kwise_loss = True
+        elif loss == 'combined':
+            self.loss_fn = PairWiseLoss()
+            self.strategy.print("Combined Loss for training")
+            self.combined_loss = True
+        elif loss == 'variant_1':
+            self.loss_fn = PairWiseLoss()
+            self.strategy.print("Variant-1 loss for training")
+            self.variant_loss = False
         else:
             self.loss_fn = LogExpLoss()
             self.strategy.print("LogExp Loss for training")
@@ -181,6 +191,10 @@ class CalibratedRewardModelTrainer(ABC):
                         [cwh_reward, cwl_reward, rwl_reward, rwh_reward], dim=1
                     )
                     preference_loss = self.loss_fn(all_rewards, margin)
+                elif self.combined_loss:
+                    preference_loss = self.loss_fn(cwh_reward, cwl_reward, margin) + self.loss_fn(rwl_reward, rwh_reward, margin) + self.loss_fn(chosen_reward, reject_reward, margin)
+                elif self.variant_loss:
+                    preference_loss = self.loss_fn(cwh_reward, cwl_reward, margin) + self.loss_fn(rwl_reward, rwh_reward, margin) + self.loss_fn(cwh_reward, rwl_reward, margin)
                 else:
                     # version 5
                     preference_loss = self.loss_fn(cwh_reward, cwl_reward, margin) + self.loss_fn(rwl_reward, rwh_reward, margin)

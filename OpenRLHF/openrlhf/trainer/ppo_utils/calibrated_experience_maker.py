@@ -88,6 +88,10 @@ class CalibratedNaiveExperienceMaker(ABC):
         kl_controller,
         strategy=None,
         reward_fn=None,
+        alpha=0.1,
+        w=0.5,
+        adjustment_type = 'threshold',
+        avg_type = 'mean',
     ) -> None:
         super().__init__()
         self.actor = actor
@@ -99,6 +103,15 @@ class CalibratedNaiveExperienceMaker(ABC):
         self.kl_ctl = kl_controller
         self.strategy = strategy
         self.reward_fn = reward_fn
+        self.alpha = alpha
+        self.strategy.print(f"Reward adjustment alpha: {self.alpha}")
+        self.w = w
+        self.strategy.print(f"Reward adjustment weight: {self.w}")
+
+        self.adjustment_type = adjustment_type
+        self.strategy.print(f"Reward adjustment type: {adjustment_type}")
+        self.avg_type = avg_type
+        self.strategy.print(f"Reward avg type: {avg_type}")
 
         # save a moving average of rewards
         self.strategy.print('Initialize reward avg from reward mean')
@@ -200,16 +213,29 @@ class CalibratedNaiveExperienceMaker(ABC):
         r_without_confidence = r_without_confidence.clamp(min=-10, max=10)
 
         # update reward moving average
-        self.reward_avg = r_without_confidence.mean() * 0.1 + self.reward_avg * 0.9
-
+        if self.avg_type == 'mean':
+            self.reward_avg = r_without_confidence.mean() * self.alpha + self.reward_avg * (1 - self.alpha)
+        elif self.avg_type == 'std':
+            self.reward_avg = r_without_confidence.std() * self.alpha + self.reward_avg * (1 - self.alpha)
+        else:
+            raise ValueError(f"Unknown avg_type: {self.avg_type}")
         confidence_list = torch.tensor(confidence_list, dtype=torch.float).to(r_without_confidence.device)
         confidence_list /= 10.0
-        reward_adjustment_factor = (0.5 * torch.abs(r_without_confidence)) * (confidence_list - 0.5) 
-        r_without_confidence = torch.where(
-            r_without_confidence >= self.reward_avg,
-            r_without_confidence + reward_adjustment_factor,
-            r_without_confidence - reward_adjustment_factor
-        )
+        if self.adjustment_type == 'threshold':
+            if self.avg_type == 'std':
+                reward_adjustment_factor = (self.w * r_without_confidence) * (confidence_list - 0.5) 
+            else:
+                reward_adjustment_factor = (self.w * torch.abs(r_without_confidence)) * (confidence_list - 0.5) 
+            r_without_confidence = torch.where(
+                r_without_confidence >= self.reward_avg,
+                r_without_confidence + reward_adjustment_factor,
+                r_without_confidence - reward_adjustment_factor
+            )
+        elif self.adjustment_type == 'difference':
+            reward_adjustment_factor = self.w * (r_without_confidence - self.reward_avg) * (confidence_list - 0.5) 
+            r_without_confidence = r_without_confidence + reward_adjustment_factor
+        else:
+            raise ValueError(f"Unknown adjustment_type: {self.adjustment_type}")
 
         reward, kl = compute_reward(
             r_without_confidence,

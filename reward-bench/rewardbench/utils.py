@@ -381,6 +381,9 @@ def load_eval_dataset(
                 high_probability = random.randint(7, 10)
                 if mode == 'both_low':
                     high_probability = random.randint(0, 3)
+                if mode == 'random':
+                    low_probability = random.randint(0, 10)
+                    high_probability = random.randint(0, 10)
                 if probabilities_side == 'right':
                     if pure_number:
                         example['chosen'] = example['chosen'].rstrip() + f"\n{low_probability}."
@@ -629,6 +632,9 @@ def prepare_dialogue_from_tokenizer(
                 high_probability = random.randint(7, 10)
                 if mode == 'both_low':
                     high_probability = random.randint(0, 3)
+                if mode == 'random':
+                    low_probability = random.randint(0, 10)
+                    high_probability = random.randint(0, 10)
                 if probabilities_side == 'right':
                     if pure_number:
                         example['chosen'] = example['chosen'].rstrip() + f"\n{low_probability}."
@@ -825,6 +831,9 @@ def prepare_dialogue(
                 high_probability = random.randint(7, 10)
                 if mode == 'both_low':
                     high_probability = random.randint(0, 3)
+                if mode == 'random':
+                    low_probability = random.randint(0, 10)
+                    high_probability = random.randint(0, 10)
                 if probabilities_side == 'right':
                     if pure_number:
                         example['chosen'] = example['chosen'].rstrip() + f"\n{low_probability}."

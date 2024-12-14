@@ -272,6 +272,10 @@ def train(args):
         ema_beta=0.992,
         ptx_coef=args.ptx_coef,
         max_norm=args.max_norm,
+        alpha=args.alpha,
+        w=args.w,
+        adjustment_type=args.adjustment_type,
+        avg_type=args.avg_type,
         # fro GPT generation
         do_sample=True,
         max_new_tokens=args.generate_max_len,
@@ -427,8 +431,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "--add_confidence_stopping_criteria", action="store_true", default=False, help="Ask for confidence in the prompt"
     )
-
+    parser.add_argument(
+        "--alpha", type=float, default=0.1, help='Reward moving average decay coefficient')
+    parser.add_argument(
+        "--w", type=float, default=0.5, help='Reward moving average weight coefficient')
+    parser.add_argument(
+        "--adjustment_type", type=str, default="threshold", help="PPO-C adjugstment type")
+    parser.add_argument(
+        "--avg_type", type=str, default="mean", help="PPO-C reward avg type")
     args = parser.parse_args()
+
 
     if args.critic_pretrain is None:
         args.critic_pretrain = args.reward_pretrain

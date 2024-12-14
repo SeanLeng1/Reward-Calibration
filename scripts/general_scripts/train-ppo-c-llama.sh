@@ -34,6 +34,9 @@ openrlhf.cli.train_cppo \
    --normalize_reward \
    --adam_offload \
    --flash_attn \
+   --alpha 0.1 \
+   --w 2.0 \
+   --adjustment_type difference \
    --gradient_checkpointing \
    --wandb_run_name llama3-8b-final-ppo-c \
    --use_wandb True 

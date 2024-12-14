@@ -36,6 +36,9 @@ openrlhf.cli.train_cppo \
    --adam_offload \
    --flash_attn \
    --gradient_checkpointing \
+   --adjustment_type difference \
+   --alpha 0.1 \
+   --w 2.0 \
    --wandb_run_name mistral-7b-ppo-c-hermes \
    --use_wandb True 
 EOF

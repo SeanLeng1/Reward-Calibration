@@ -73,6 +73,10 @@ class CalibratedPPOTrainer(ABC):
         prompt_max_len: int = 128,
         dataloader_pin_memory: bool = True,
         reward_fn: Callable[[List[torch.Tensor]], torch.Tensor] = None,
+        alpha=0.1,
+        w=0.5,
+        adjustment_type='threshold',
+        avg_type='mean',
         **generate_kwargs,
     ) -> None:
         assert (
@@ -121,7 +125,7 @@ class CalibratedPPOTrainer(ABC):
             self.kl_ctl = FixedKLController(init_kl_coef)
 
         self.experience_maker = CalibratedNaiveExperienceMaker(
-            actor, critic, reward_model, initial_model, tokenizer, prompt_max_len, self.kl_ctl, strategy, reward_fn
+            actor, critic, reward_model, initial_model, tokenizer, prompt_max_len, self.kl_ctl, strategy, reward_fn, alpha, adjustment_type = adjustment_type, avg_type = avg_type, w = w
         )
         self.replay_buffer = NaiveReplayBuffer(micro_train_batch_size, buffer_limit, buffer_cpu_offload)
 
